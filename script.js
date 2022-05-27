@@ -2,7 +2,7 @@ let balloon = document.querySelector("p");
 
 
 window.addEventListener("keydown", event => { //Arrow keys are only triggered by onkeydown, not onkeypress.
-    console.log(event.key);
+
     if (event.key === "ArrowUp") {
         event.preventDefault(); //prevents from default scrolling
         let balloonSize = Number(balloon.style.fontSize.replace("px", ""));
@@ -11,7 +11,10 @@ window.addEventListener("keydown", event => { //Arrow keys are only triggered by
         balloon.style.fontSize = balloonSize;
         event.repeat = false; // how to stop event.repeat ?? if the key is pressed long?????
         console.log("It GROWS!");
-
+        if (Number(balloon.style.fontSize.replace("px", "")) > 100) {
+            balloon.innerText = "💥";
+            window.removeEventListener("keydown", event);
+        }
     }
 }
 )
