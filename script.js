@@ -16,28 +16,33 @@ function deflate() {
     console.log("It SHRINKS!");
 }
 
+function onKeyDownArrowUp(event) {
+    if (event.key !== "ArrowUp") return; //Arrow keys are only triggered by onkeydown, not onkeypress.
 
-window.addEventListener("keydown", event1 => { //Arrow keys are only triggered by onkeydown, not onkeypress.
+    event.preventDefault(); //prevents from default scrolling
 
-    if (event1.key === "ArrowUp") {
-        event1.preventDefault(); //prevents from default scrolling
-        event1.repeat = false; // how to stop event.repeat ?? if the key is pressed long?????
-        inflate();
-        if (Number(balloon.style.fontSize.replace("px", "")) > 100) {
-            balloon.innerText = "💥";
-            window.removeEventListener("keydown", event1);
-        }
+    if (event.repeat === true) return; // how to stop event.repeat if the key is pressed long
+
+    inflate();
+
+    if (Number(balloon.style.fontSize.replace("px", "")) > 100) {
+        balloon.innerText = "💥";
+        window.removeEventListener("keydown", onKeyDownArrowUp);
     }
 }
-)
 
-window.addEventListener("keydown", event => { //Arrow keys are only triggered by onkeydown, not onkeypress.
+function onKeyDownArrowDown(event) {
     console.log(event.key);
-    if (event.key === "ArrowDown") {
-        event.preventDefault(); //prevents from default scrolling
-        event.repeat = false;
-        deflate();
+    if (event.key !== "ArrowDown") return;
 
-    }
+    event.preventDefault(); //prevents from default scrolling
+
+    if (event.repeat === true) return; // how to stop event.repeat if the key is pressed long
+
+    deflate();
+
 }
-)
+
+window.addEventListener("keydown", onKeyDownArrowUp);
+
+window.addEventListener("keydown", (onKeyDownArrowDown);
