@@ -45,4 +45,4 @@ function onKeyDownArrowDown(event) {
 
 window.addEventListener("keydown", onKeyDownArrowUp);
 
-window.addEventListener("keydown", (onKeyDownArrowDown);
+window.addEventListener("keydown", onKeyDownArrowDown);
